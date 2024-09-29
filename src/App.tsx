@@ -39,9 +39,9 @@ function App() {
 
 
   return (
-    <div>
+    <div className="flex justify-center flex-col items-center">
       <header>Dose Helper</header>
-      <div>
+      <div className="max-w-7xl">
         <Input name="original" value={original} onChange={changeHandler} />
         <Input name="intended" value={desired} onChange={changeHandler} />
         <Input name="value to calculate" value={toCalculate} onChange={changeHandler} />
