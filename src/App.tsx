@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import Input from './components/Input/Input'
+import { useEffect } from 'react'
+import Input  from '@components/Input'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
@@ -15,26 +15,24 @@ function App() {
 
 
   useEffect(() => {
-    console.log('needs to change calc');
-
     updateCalc()
   }, [original, desired, toCalculate]);
 
-  const changeHandler = (e: React.FormEvent<HTMLInputElement>) => {
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target?.value
     const element = e.target?.id
 
     switch (element) {
       case "value to calculate":
-        changeValue(value, "toCalculate")
+        changeValue(Number(value), "toCalculate")
         break
 
       case "intended":
-        changeValue(value, 'desired')
+        changeValue(Number(value), "desired")
         break
 
       default:
-        changeValue(value, element)
+        changeValue(Number(value), element)
         break
     }
   }
@@ -42,17 +40,13 @@ function App() {
 
   return (
     <div>
-      <header>cenas</header>
+      <header>Dose Helper</header>
       <div>
-        <input type="text" value={original} />
         <Input name="original" value={original} onChange={changeHandler} />
         <Input name="intended" value={desired} onChange={changeHandler} />
         <Input name="value to calculate" value={toCalculate} onChange={changeHandler} />
 
-        <p>{ original }</p>
-
         <p>{ calculated }</p>
-
       </div>
     </div>
   )

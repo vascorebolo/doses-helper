@@ -1,19 +1,21 @@
 import { create } from 'zustand'
 
 interface DoseHelperState {
-  original: number | undefined
-  desired: number | undefined
-  toCalculate: number | undefined
-  calculated: number | undefined
+  original: number | null
+  desired: number | null
+  toCalculate: number | null
+  calculated: number | null
+  tm6: boolean
   changeValue: (value: number, name: string) => void
   updateCalc: () => void
 }
 
 const useDoseHelperStore = create<DoseHelperState>((set) => ({
-  original: 0,
-  desired: 0,
-  toCalculate: 0,
-  calculated: 0,
+  original: null,
+  desired: null,
+  toCalculate: null,
+  calculated: null,
+  tm6: false,
   changeValue: (value: number, name: string) =>
     set((state) => ({ ...state, [name]: value })),
   updateCalc: () => {
@@ -21,10 +23,11 @@ const useDoseHelperStore = create<DoseHelperState>((set) => ({
       const { original, desired, toCalculate } = state
 
       if (original && desired && toCalculate) {
-        return {...state, calculated: toCalculate * desired / original }
+        const calculated = Math.round(toCalculate * desired / original)
+        return {...state, calculated  }
       }
 
-      return {...state, calculated: undefined}
+      return {...state, calculated: null}
     })
   }
 }))
