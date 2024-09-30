@@ -13,27 +13,14 @@ function App() {
   const changeValue = useDoseHelperStore((state) => state.changeValue)
   const updateCalc = useDoseHelperStore((state) => state.updateCalc)
 
-
   useEffect(() => {
     updateCalc()
   }, [original, desired, toCalculate]);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target?.value
-    const element = e.target?.id
-
-    switch (element) {
-      case "value to calculate":
-        changeValue(Number(value), "toCalculate")
-        break
-
-      case "intended":
-        changeValue(Number(value), "desired")
-        break
-
-      default:
-        changeValue(Number(value), element)
-        break
+    if (e.target) {
+      const { value, id } = e.target
+      changeValue(Number(value), id)
     }
   }
 
@@ -41,12 +28,32 @@ function App() {
   return (
     <div className="flex justify-center flex-col items-center">
       <header>Dose Helper</header>
-      <div className="max-w-7xl">
-        <Input name="original" value={original} onChange={changeHandler} />
-        <Input name="intended" value={desired} onChange={changeHandler} />
-        <Input name="value to calculate" value={toCalculate} onChange={changeHandler} />
+      <div className="max-w-7xl space-y-6">
+        <Input
+          name="original"
+          value={original}
+          onChange={changeHandler}
+          label="Quantidade Base (gr)"
+        />
+        <Input
+          name="desired"
+          value={desired}
+          onChange={changeHandler}
+          label="Quantidade Usada (gr)"
+        />
+        <Input
+          name="toCalculate"
+          value={toCalculate}
+          onChange={changeHandler}
+          label="Quantidade a Calcular (gr)"
+        />
 
-        <p>{ calculated }</p>
+        <div>
+          <p className="text-center pt-5 pb-3 text-gray-500">Valor calculado</p>
+          <p className="text-green-700 text-5xl px-3 py-2 text-center">
+            { calculated && calculated > 0 ? `${calculated}gr` : '-' }
+          </p>
+        </div>
       </div>
     </div>
   )

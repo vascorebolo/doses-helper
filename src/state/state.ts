@@ -17,7 +17,7 @@ const useDoseHelperStore = create<DoseHelperState>((set) => ({
   calculated: null,
   tm6: false,
   changeValue: (value: number, name: string) =>
-    set((state) => ({ ...state, [name]: value })),
+    set((state) => ({ ...state, [name]: value ? value : null })),
   updateCalc: () => {
     set((state) => {
       const { original, desired, toCalculate } = state
