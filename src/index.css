@@ -6,3 +6,18 @@
   font-family: "raleway", sans-serif;
   font-weight: 300;
 }
+
+html {
+  height: 100%;
+}
+
+body,
+body > div {
+  min-height: 100vh;
+}
+
+body > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

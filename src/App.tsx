@@ -26,8 +26,8 @@ function App() {
 
 
   return (
-    <div className="flex justify-center flex-col items-center">
-      <header>Dose Helper</header>
+    <div className="flex justify-center flex-col items-center min-h-full">
+      <header className="mb-8 mt-2 text-5xl text-green-800">Doseador</header>
       <div className="max-w-7xl space-y-6">
         <Input
           name="original"
@@ -49,7 +49,7 @@ function App() {
         />
 
         <div>
-          <p className="text-center pt-5 pb-3 text-gray-500">Valor calculado</p>
+          <p className="text-center pt-5 pb-1 text-gray-500">Valor calculado</p>
           <p className="text-green-700 text-5xl px-3 py-2 text-center">
             { calculated && calculated > 0 ? `${calculated}gr` : '-' }
           </p>
