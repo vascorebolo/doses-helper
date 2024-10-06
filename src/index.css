@@ -19,5 +19,4 @@ body > div {
 body > div {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
