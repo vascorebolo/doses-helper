@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import ToggleInput from './ToggleInput'
 import { ToggleProps } from './Toggle.types'
 
 const Toggle:FC<ToggleProps> = ({
@@ -24,46 +25,22 @@ const Toggle:FC<ToggleProps> = ({
           tm5
         </label>
       )}
-      <div className="
-        text-center
-        relative
-        border-2
-        border-green-800
-        h-6
-        rounded-full
-        overflow-hidden"
-      >
-        <input
-          type="checkbox"
-          name={name}
-          id={name}
-          checked={value}
-          onChange={onChange}
-          className="
-            inline-block
-            cursor-pointer
-            w-14
-            appearance-none
-            h-5
-            after:content-['']
-            after:ml-0.5
-            after:bg-green-600
-            after:h-5
-            after:w-5
-            after:absolute
-            after:rounded-full
-            after:-left-1
-            checked:after:left-9
-            after:transition-all
-            after:duration-300
-          "
-          style={{fontSize: 0}}
-        />
-      </div>
+      <ToggleInput
+        checked={value}
+        name={name}
+        onChange={onChange}
+      />
       {labels.right && (
         <label
           htmlFor={name}
-          className="w-full inline-block cursor-pointer text-left text-xl text-green-700"
+          className="
+            w-full
+            inline-block
+            cursor-pointer
+            text-left
+            text-xl
+            text-green-700
+          "
         >
           tm6
         </label>
